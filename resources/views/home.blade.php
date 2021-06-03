@@ -17,7 +17,18 @@
             max-width: 100vw;
             max-height: 80vh;
         }
-
+        .card {
+            background-color: rgb(30, 41, 59);
+            border-color: rgb(30, 41, 59);
+        }
+        .card-header {
+            background-color: rgb(30, 41, 59);
+            border-color: rgb(30, 41, 59);
+        }
+        .card-body {
+            background-color: rgb(30, 41, 59);
+            border-color: rgb(30, 41, 59);
+        }
     </style>
 </head>
 
@@ -42,7 +53,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container-fluid pt-5 bg-dark">
+    <div class="container-fluid pt-5">
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="card">
