@@ -16,6 +16,7 @@
             max-width: 100vw;
             max-height: 100vh;
         }
+
     </style>
 </head>
 
@@ -44,6 +45,12 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
     <script>
+        function randomRGB() {
+            var o = Math.round,
+                r = Math.random,
+                s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
+        }
         $.ajax({
             type: 'GET',
             url: '/api/sensordata/test_node?data_type=humidity_external',
@@ -105,37 +112,36 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            borderColor: 'rgb(75, 192, 192)',
+                            borderColor: randomRGB(),
                             tension: 0.1,
                             label: 'Humidity External',
                             data: humidityData,
                             borderWidth: 1
-                        },{
-                            borderColor: 'rgb(75, 192, 192)',
+                        }, {
+                            borderColor: randomRGB(),
                             tension: 0.1,
                             label: 'Temp External',
                             data: tempData,
                             borderWidth: 1
-                        },{
-                            borderColor: 'rgb(75, 192, 192)',
+                        }, {
+                            borderColor: randomRGB(),
                             tension: 0.1,
                             label: 'Light External',
                             data: lightData,
                             borderWidth: 1
-                        },{
-                            borderColor: 'rgb(75, 192, 192)',
+                        }, {
+                            borderColor: randomRGB(),
                             tension: 0.1,
                             label: 'Diff. Potential CH1',
                             data: diff1Data,
                             borderWidth: 1
-                        },{
-                            borderColor: 'rgb(75, 192, 192)',
+                        }, {
+                            borderColor: randomRGB(),
                             tension: 0.1,
                             label: 'Diff. Potential CH2',
                             data: diff2Data,
                             borderWidth: 1
-                        },
-                    ]
+                        }, ]
                     },
                     options: {
                         scales: {
