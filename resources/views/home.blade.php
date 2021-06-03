@@ -13,6 +13,9 @@
 
     <title>Hello, world!</title>
     <style>
+        html, body {
+            overflow-x: hidden;
+        }
         #myChart {
             max-width: 100vw;
             max-height: 80vh;
