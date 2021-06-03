@@ -104,7 +104,7 @@
                             y: {
                                 beginAtZero: false
                             }
-                        },
+                        },/*
                         plugins: {
                             zoom: {
                                 zoom: {
@@ -117,7 +117,7 @@
                                     mode: 'xy',
                                 }
                             }
-                        }
+                        }*/
                     }
                 });
             }
