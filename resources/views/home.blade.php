@@ -13,9 +13,11 @@
 
     <title>Hello, world!</title>
     <style>
-        html, body {
+        html,
+        body {
             overflow-x: hidden;
         }
+
         #myChart {
             max-width: 100vw;
             max-height: 80vh;
@@ -63,7 +65,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container-fluid pt-5 px-5 px-lg-2">
+    <div class="container-fluid py-5 px-5 px-lg-2">
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="card">
@@ -155,20 +157,6 @@
                                 beginAtZero: false
                             }
                         },
-                        /*
-                                                plugins: {
-                                                    zoom: {
-                                                        zoom: {
-                                                            wheel: {
-                                                                enabled: true,
-                                                            },
-                                                            pinch: {
-                                                                enabled: true
-                                                            },
-                                                            mode: 'xy',
-                                                        }
-                                                    }
-                                                }*/
                     }
                 });
             }
@@ -235,30 +223,63 @@
                             y: {
                                 beginAtZero: false
                             }
-                        },
-                        legend: {
-                            fontColor: "white",
-                        },
-                        scales: {
-                            xAxes: [{
-                                ticks: {
-                                    fontColor: "white",
-                                }
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    fontColor: "white",
-                                    beginAtZero: true,
-                                    maxTicksLimit: 5,
-                                    stepSize: Math.ceil(250 / 5),
-                                    max: 250
-                                }
-                            }]
                         }
                     }
                 });
             }
         });
+
+        function createData(httpResponse) {
+            var labels = [];
+            var humidityData = [];
+            var lightData = [];
+            var tempData = [];
+            var diff1Data = [];
+            var diff2Data = [];
+            var dataArray = Array.from(httpResponse.data);
+            dataArray.forEach((entry) => {
+                humidityData.push(entry.humidity_external);
+                lightData.push(entry.light_external);
+                tempData.push(entry.temp_external);
+                diff1Data.push(entry.differential_potenial_ch1);
+                diff2Data.push(entry.differential_potenial_ch2);
+                labels.push(entry.date);
+            });
+            return {
+                labels: labels,
+                datasets: [{
+                    borderColor: letterCSS(1, 5),
+                    tension: 0.1,
+                    label: 'Humidity External',
+                    data: humidityData,
+                    borderWidth: 1
+                }, {
+                    borderColor: letterCSS(2, 5),
+                    tension: 0.1,
+                    label: 'Temp External',
+                    data: tempData,
+                    borderWidth: 1
+                }, {
+                    borderColor: letterCSS(3, 5),
+                    tension: 0.1,
+                    label: 'Light External',
+                    data: lightData,
+                    borderWidth: 1
+                }, {
+                    borderColor: letterCSS(4, 5),
+                    tension: 0.1,
+                    label: 'Diff. Potential CH1',
+                    data: diff1Data,
+                    borderWidth: 1
+                }, {
+                    borderColor: letterCSS(5, 5),
+                    tension: 0.1,
+                    label: 'Diff. Potential CH2',
+                    data: diff2Data,
+                    borderWidth: 1
+                }, ]
+            };
+        }
 
     </script>
 </body>
