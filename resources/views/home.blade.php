@@ -60,7 +60,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container-fluid pt-5 px-5 px-lg-0">
+    <div class="container-fluid pt-5 px-5 px-lg-2">
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="card">
