@@ -24,5 +24,6 @@
     ));
     @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response    = @curl_exec($ch);
+    echo $response;
     @curl_close($ch);
 ?>
