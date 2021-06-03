@@ -46,10 +46,24 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-lg-6">
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <div class="card">
+                    <div class="card-header">
+                        Humidity External
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-lg-6">
-                <canvas id="comparative"></canvas>
+            <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+                <div class="card">
+                    <div class="card-header">
+                        Comparative Graph
+                    </div>
+                    <div class="card-body">
+                        <canvas id="comparative"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
