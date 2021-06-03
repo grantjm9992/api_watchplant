@@ -28,7 +28,6 @@
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
@@ -43,7 +42,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid pt-5 bg-dark">
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="card">
