@@ -17,7 +17,7 @@
     $ch = @curl_init();
     @curl_setopt($ch, CURLOPT_POST, true);
     @curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    @curl_setopt($ch, CURLOPT_URL, $endpoint);
+    @curl_setopt($ch, CURLOPT_URL, 'https://crm.digitalmore.es/api/sensordata');
 	@curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
     @curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json'
