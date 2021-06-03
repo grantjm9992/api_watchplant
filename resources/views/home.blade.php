@@ -17,18 +17,25 @@
             max-width: 100vw;
             max-height: 80vh;
         }
+
         .card {
             background-color: rgb(30, 41, 59);
             border-color: rgb(30, 41, 59);
+            color: #fff;
         }
+
         .card-header {
             background-color: rgb(30, 41, 59);
             border-color: rgb(30, 41, 59);
+            color: #fff;
         }
+
         .card-body {
             background-color: rgb(30, 41, 59);
             border-color: rgb(30, 41, 59);
+            color: #fff;
         }
+
     </style>
 </head>
 
@@ -92,6 +99,22 @@
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="/js/chartjs-plugin-zoom.min.js"></script>
     <script>
+        function letterCSS(i, length) {
+            let hue = Math.floor(i / length * 341); // between 0 and 340
+            let saturation = 100;
+            let lightness = 50;
+
+            // color adjustment:
+            if ( hue > 215 && hue < 265) {
+                const gain = 20;
+                let blueness = 1 - Math.abs(hue - 240) / 25;
+                let change = Math.floor(gain * blueness);
+                lightness += change;
+                saturation -= change;
+            }
+            return hsl = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        }
+
         function randomRGB() {
             var o = Math.round,
                 r = Math.random,
@@ -116,7 +139,7 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            borderColor: 'rgb(75, 192, 192)',
+                            borderColor: 'rgb(75, 192, 255)',
                             tension: 0.1,
                             label: 'Humidity External',
                             data: data,
@@ -128,20 +151,21 @@
                             y: {
                                 beginAtZero: false
                             }
-                        },/*
-                        plugins: {
-                            zoom: {
-                                zoom: {
-                                    wheel: {
-                                        enabled: true,
-                                    },
-                                    pinch: {
-                                        enabled: true
-                                    },
-                                    mode: 'xy',
-                                }
-                            }
-                        }*/
+                        },
+                        /*
+                                                plugins: {
+                                                    zoom: {
+                                                        zoom: {
+                                                            wheel: {
+                                                                enabled: true,
+                                                            },
+                                                            pinch: {
+                                                                enabled: true
+                                                            },
+                                                            mode: 'xy',
+                                                        }
+                                                    }
+                                                }*/
                     }
                 });
             }
@@ -172,31 +196,31 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            borderColor: randomRGB(),
+                            borderColor: letterCSS(1, 5),
                             tension: 0.1,
                             label: 'Humidity External',
                             data: humidityData,
                             borderWidth: 1
                         }, {
-                            borderColor: randomRGB(),
+                            borderColor: letterCSS(2, 5),
                             tension: 0.1,
                             label: 'Temp External',
                             data: tempData,
                             borderWidth: 1
                         }, {
-                            borderColor: randomRGB(),
+                            borderColor: letterCSS(3, 5),
                             tension: 0.1,
                             label: 'Light External',
                             data: lightData,
                             borderWidth: 1
                         }, {
-                            borderColor: randomRGB(),
+                            borderColor: letterCSS(4, 5),
                             tension: 0.1,
                             label: 'Diff. Potential CH1',
                             data: diff1Data,
                             borderWidth: 1
                         }, {
-                            borderColor: randomRGB(),
+                            borderColor: letterCSS(5, 5),
                             tension: 0.1,
                             label: 'Diff. Potential CH2',
                             data: diff2Data,
