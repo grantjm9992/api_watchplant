@@ -105,7 +105,7 @@
             let lightness = 50;
 
             // color adjustment:
-            if ( hue > 215 && hue < 265) {
+            if (hue > 215 && hue < 265) {
                 const gain = 20;
                 let blueness = 1 - Math.abs(hue - 240) / 25;
                 let change = Math.floor(gain * blueness);
@@ -232,6 +232,25 @@
                             y: {
                                 beginAtZero: false
                             }
+                        },
+                        legend: {
+                            fontColor: "white",
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: "white",
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: "white",
+                                    beginAtZero: true,
+                                    maxTicksLimit: 5,
+                                    stepSize: Math.ceil(250 / 5),
+                                    max: 250
+                                }
+                            }]
                         }
                     }
                 });
