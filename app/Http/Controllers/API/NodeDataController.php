@@ -46,7 +46,7 @@ class NodeDataController extends BaseController
     public function retrieve(Request $request, $nodeId)
     {
         $data = NodeData::where('node_id', $nodeId)->orderBy('date', 'ASC');
-        $dataLimit = ($request->has('data_size')) ? (int)$request->data_size : 100;
+        $dataLimit = ($request->has('data_size')) ? (int)$request->data_size : 50;
         $data->limit($dataLimit);
         if ($request->has('data_type')) {
             $data->select('date', 'node_id', $request->data_type);
