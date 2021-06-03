@@ -46,7 +46,7 @@
     <script>
         $.ajax({
             type: 'GET',
-            url: '/api/sensordata/1?data_type=humidity_external',
+            url: '/api/sensordata/test_node?data_type=humidity_external',
             success: (response) => {
                 console.log(response.data);
                 var labels = [];
@@ -81,7 +81,7 @@
         });
         $.ajax({
             type: 'GET',
-            url: '/api/sensordata/1',
+            url: '/api/sensordata/test_node',
             success: (response) => {
                 console.log(response.data);
                 var labels = [];
