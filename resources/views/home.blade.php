@@ -39,7 +39,7 @@
     </style>
 </head>
 
-<body>
+<body style="bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
         <a class="navbar-brand" href="#">WatchPlant</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
