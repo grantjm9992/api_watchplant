@@ -9,39 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
-
-    <title>Hello, world!</title>
-    <style>
-        html,
-        body {
-            overflow-x: hidden;
-        }
-
-        #myChart {
-            max-width: 100vw;
-            max-height: 80vh;
-        }
-
-        .card {
-            background-color: rgb(30, 41, 59);
-            border-color: rgb(30, 41, 59);
-            color: #fff;
-        }
-
-        .card-header {
-            background-color: rgb(30, 41, 59);
-            border-color: rgb(30, 41, 59);
-            color: #fff;
-        }
-
-        .card-body {
-            background-color: rgb(30, 41, 59);
-            border-color: rgb(30, 41, 59);
-            color: #fff;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
 </head>
 
 <body style="bg-light">
