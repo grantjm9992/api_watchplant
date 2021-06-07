@@ -184,40 +184,7 @@
                 var ctx = document.getElementById('comparative').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            borderColor: letterCSS(1, 5),
-                            tension: 0.1,
-                            label: 'Humidity External',
-                            data: humidityData,
-                            borderWidth: 1
-                        }, {
-                            borderColor: letterCSS(2, 5),
-                            tension: 0.1,
-                            label: 'Temp External',
-                            data: tempData,
-                            borderWidth: 1
-                        }, {
-                            borderColor: letterCSS(3, 5),
-                            tension: 0.1,
-                            label: 'Light External',
-                            data: lightData,
-                            borderWidth: 1
-                        }, {
-                            borderColor: letterCSS(4, 5),
-                            tension: 0.1,
-                            label: 'Diff. Potential CH1',
-                            data: diff1Data,
-                            borderWidth: 1
-                        }, {
-                            borderColor: letterCSS(5, 5),
-                            tension: 0.1,
-                            label: 'Diff. Potential CH2',
-                            data: diff2Data,
-                            borderWidth: 1
-                        }, ]
-                    },
+                    data: createData(response),
                     options: {
                         scales: {
                             y: {
