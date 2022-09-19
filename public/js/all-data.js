@@ -31,7 +31,30 @@ function loadData(nodeId)
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: false
+                            beginAtZero: false,
+                            ticks: {
+                                color: '#999999',
+                                family: 'open sans',
+                                weight: 200
+                            }
+                        },
+                        x: {
+                            beginAtZero: false,
+                            ticks: {
+                                color: '#999999',
+                                family: 'open sans',
+                                weight: 200
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: 'open sans',
+                                    weight: 200
+                                }
+                            }
                         }
                     }
                 }

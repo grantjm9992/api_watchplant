@@ -10,26 +10,28 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <div class="col-12 col-lg-6 mt-5 mt-lg-0">
-        <div class="card">
-            <div class="card-header">
-                Comparative Graph
-                <br>
-                <label for="id_label_multiple" class="text-light mt-1">
-                    Node
-                    <select class="js-example-basic-single" name="node" id="node_select" style="width: 300px;">
-                        <?php
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Comparative Graph
+                    <br>
+                    <label for="id_label_multiple" class="text-light mt-1">
+                        Node
+                        <select class="js-example-basic-single" name="node" id="node_select" style="width: 300px;">
+                            <?php
                             foreach ($nodes as $node) {
-                          ?>
-                        <option value="<?php echo $node['handle']; ?>"><?php echo $node['name']; ?></option>
-                        <?php
+                                ?>
+                            <option value="<?php echo $node['handle']; ?>"><?php echo $node['name']; ?></option>
+                                <?php
                             }
-                        ?>
-                    </select>
-                </label>
-            </div>
-            <div class="card-body">
-                <canvas id="comparative"></canvas>
+                            ?>
+                        </select>
+                    </label>
+                </div>
+                <div class="card-body">
+                    <canvas id="comparative"></canvas>
+                </div>
             </div>
         </div>
     </div>

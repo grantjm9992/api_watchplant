@@ -1,5 +1,6 @@
 html, body {
     overflow-x: hidden;
+    background-color: #002122;
 }
 
 #myChart {
@@ -8,19 +9,23 @@ html, body {
 }
 
 .card {
-    background-color: rgb(30, 41, 59);
-    border-color: rgb(30, 41, 59);
+    background-color: #002122;
+    border-color: #002122;
     color: #fff;
 }
 
 .card-header {
-    background-color: rgb(30, 41, 59);
-    border-color: rgb(30, 41, 59);
+    background-color: #002122;
+    border-color: #002122;
     color: #fff;
 }
 
 .card-body {
-    background-color: rgb(30, 41, 59);
-    border-color: rgb(30, 41, 59);
+    background-color: #002122;
+    border-color: #002122;
     color: #fff;
+}
+
+.select2-selection__choice__display {
+    color: #999999;
 }
