@@ -13,21 +13,38 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    Comparative Graph
-                    <br>
-                    <label for="id_label_multiple" class="text-light mt-1">
-                        Node
-                        <select class="js-example-basic-single" name="node" id="node_select" style="width: 300px;">
-                            <?php
-                            foreach ($nodes as $node) {
-                                ?>
-                            <option value="<?php echo $node['handle']; ?>"><?php echo $node['name']; ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </label>
+                <div class="card-header">ç
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            Comparative Graph
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <label for="id_label_multiple" class="text-light mt-1">
+                                Node
+                                <select class="js-example-basic-single" name="node" id="node_select" style="width: 300px;">
+                                    <?php
+                                    foreach ($nodes as $node) {
+                                        ?>
+                                    <option value="<?php echo $node['handle']; ?>"><?php echo $node['name']; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-4">
+                                <label for="date_range" class="text-light mt-1">
+                                    Date range
+                                    <select class="js-example-basic-single" name="date" id="date_range" style="width: 300px;">
+                                        <option value="latest" selected>Latest data</option>
+                                        <option value="month">Last month</option>
+                                        <option value="six_months">Last 6 months</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <canvas id="comparative"></canvas>

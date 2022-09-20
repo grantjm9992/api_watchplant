@@ -19,6 +19,7 @@ Route::post('sensordata-test-data', 'API\NodeDataController@importFromFiles');
 Route::get('sensordata/{nodeId}', 'API\NodeDataController@retrieve');
 Route::post('sensordata-multiple', 'API\NodeDataController@retrieveForMultipleNodes');
 Route::get('nodes', 'API\NodeController@retrieve');
+Route::post('nodes', 'API\NodeController@create');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

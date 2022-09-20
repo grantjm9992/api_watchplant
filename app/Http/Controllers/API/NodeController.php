@@ -17,4 +17,13 @@ class NodeController extends BaseController
         return $this->sendResponse(NodesResource::collection($data), 'Nodes retrieved successfully.');
     }
 
+    public function create(Request $request): JsonResponse
+    {
+        $data = $request->all();
+
+        $response = Nodes::create($data);
+
+        return $this->sendResponse($response, 'Node created correctly');
+    }
+
 }
