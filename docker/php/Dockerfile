@@ -47,3 +47,5 @@ COPY ./docker/php/laravel.ini /usr/local/etc/php/conf.d/laravel.ini
 WORKDIR /usr/src/app
 
 RUN chown -R www-data:www-data .
+
+EXPOSE 80
