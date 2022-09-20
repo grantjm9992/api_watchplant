@@ -5,8 +5,6 @@ services:
         build:
             context: .
             dockerfile: ./docker/php/Dockerfile
-        ports:
-            - 9000:80
         expose:
             - 9000
         volumes:
