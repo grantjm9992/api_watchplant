@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">ç
+                <div class="card-header">
                     <div class="row">
                         <div class="col-12 col-lg-4">
                             Comparative Graph
@@ -33,16 +33,14 @@
                             </label>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <div class="col-12 col-lg-4">
-                                <label for="date_range" class="text-light mt-1">
-                                    Date range
-                                    <select class="js-example-basic-single" name="date" id="date_range" style="width: 300px;">
-                                        <option value="latest" selected>Latest data</option>
-                                        <option value="month">Last month</option>
-                                        <option value="six_months">Last 6 months</option>
-                                    </select>
-                                </label>
-                            </div>
+                            <label for="date_range" class="text-light mt-1">
+                                Date range
+                                <select class="js-example-basic-single" name="date" id="date_range" style="width: 300px;">
+                                    <option value="latest" selected>Latest data</option>
+                                    <option value="month">Last month</option>
+                                    <option value="six_months">Last 6 months</option>
+                                </select>
+                            </label>
                         </div>
                     </div>
                 </div>
