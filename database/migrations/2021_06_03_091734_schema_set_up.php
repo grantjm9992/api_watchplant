@@ -11,7 +11,7 @@ class SchemaSetUp extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('nodes', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -44,7 +44,7 @@ class SchemaSetUp extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('nodes');
         Schema::dropIfExists('node_data');

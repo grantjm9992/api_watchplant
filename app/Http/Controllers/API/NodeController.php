@@ -11,7 +11,7 @@ use App\Http\Resources\NodesResource;
 
 class NodeController extends BaseController
 {
-    public function retrieve(Request $request): JsonResponse
+    public function retrieve(): JsonResponse
     {
         $data = Nodes::get();
         return $this->sendResponse(NodesResource::collection($data), 'Nodes retrieved successfully.');

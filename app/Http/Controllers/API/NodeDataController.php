@@ -98,7 +98,11 @@ class NodeDataController extends BaseController
         if ($request->has('data_type')) {
             $data->select('date', 'node_id', $request->data_type);
         }
-        return $this->sendResponse(NodeDataResource::collection($data->get()), 'Data retrieved successfully.');
+
+        $data = $data->get();
+        $data['data'] = json_decode($data['data']);
+
+        return $this->sendResponse(NodeDataResource::collection($data), 'Data retrieved successfully.');
     }
 
     public function retrieveForMultipleNodes(Request $request): JsonResponse
@@ -109,13 +113,9 @@ class NodeDataController extends BaseController
         foreach ($nodeIds as $nodeId) {
             $data = NodeData::where('node_id', $nodeId)->orderBy('date', 'DESC');
             $data->limit($dataLimit);
-            $responseData[$nodeId] = $data->get();
+            $data = $data->get();
+            $responseData[$nodeId] = $data;
         }
         return $this->sendResponse($responseData, 'Data retrieved successfully');
-    }
-
-    public function retrieveByDateLimit(Request $request)
-    {
-
     }
 }

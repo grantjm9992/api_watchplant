@@ -24,6 +24,7 @@ class NodeData extends Model
         'air_pressure',
         'soil_moisture',
         'soil_temperature',
+        'data',
         'date'
     ];
 
@@ -41,5 +42,6 @@ class NodeData extends Model
      * @var array
      */
     protected $casts = [
+        'data' => 'array'
     ];
 }
