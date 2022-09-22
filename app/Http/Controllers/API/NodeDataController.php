@@ -42,6 +42,7 @@ class NodeDataController extends BaseController
                     }
                     $thisRow['node_id']  = "test_node_$i";
                     $thisRow['data'] = $dataField;
+                    $thisRow['date'] = $data[0];
                     $ass[] = $thisRow;
                 }
 
