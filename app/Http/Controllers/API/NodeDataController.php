@@ -36,10 +36,12 @@ class NodeDataController extends BaseController
                 }
                 else {
                     $thisRow = [];
+                    $dataField = [];
                     for ($c=0; $c < $num; $c++) {
-                        $thisRow[$keys[$c]] = $data[$c];
+                        $dataField[$keys[$c]] = $data[$c];
                     }
                     $thisRow['node_id']  = "test_node_$i";
+                    $thisRow['data'] = $dataField;
                     $ass[] = $thisRow;
                 }
 
