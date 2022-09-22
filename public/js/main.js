@@ -55,12 +55,11 @@ function getMultipleNodeSingleDatatypeData()
             for (let nodeKey in dataArray) {
                 let data = [];
                 dataArray[nodeKey].forEach((entry) => {
-                    data.push(entry[dataType]);
+                    data.push(entry.data[dataType]);
                     if (i === 0) {
                         labels.push(entry.date);
                     }
                 });
-                console.log(data);
                 ajaxData.push({
                     borderColor: colours[i],
                     tension: 0.1,
@@ -70,8 +69,6 @@ function getMultipleNodeSingleDatatypeData()
                 });
                 i++;
             }
-
-            console.log(ajaxData);
 
             ctx = document.getElementById('myChart').getContext('2d');
 
@@ -99,24 +96,6 @@ $('#data_type, #nodes').change(() => {
     getMultipleNodeSingleDatatypeData();
 })
 
-$.ajax({
-    // type: 'GET',
-    // url: '/api/sensordata/test_node',
-    // success: (response) => {
-    //     var ctx = document.getElementById('comparative').getContext('2d');
-    //     var myChart = new Chart(ctx, {
-    //         type: 'line',
-    //         data: createData(response),
-    //         options: {
-    //             scales: {
-    //                 y: {
-    //                     beginAtZero: false
-    //                 }
-    //             }
-    //         }
-    //     });
-    // }
-});
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2({
         maximumSelectionLength: 8
