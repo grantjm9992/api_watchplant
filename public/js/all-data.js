@@ -86,31 +86,31 @@ function createData(httpResponse) {
             tension: 0.1,
             label: 'Humidity External',
             data: humidityData,
-            borderWidth: 1
+            borderWidth: 3
         }, {
             borderColor: colours[1],
             tension: 0.1,
             label: 'Temp External',
             data: tempData,
-            borderWidth: 1
+            borderWidth: 3
         }, {
             borderColor: colours[2],
             tension: 0.1,
             label: 'Light External',
             data: lightData,
-            borderWidth: 1
+            borderWidth: 3
         }, {
             borderColor: colours[3],
             tension: 0.1,
             label: 'Diff. Potential CH1',
             data: diff1Data,
-            borderWidth: 1
+            borderWidth: 3
         }, {
             borderColor: colours[4],
             tension: 0.1,
             label: 'Diff. Potential CH2',
             data: diff2Data,
-            borderWidth: 1
+            borderWidth: 3
         },]
     };
 }
