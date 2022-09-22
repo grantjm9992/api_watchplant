@@ -100,7 +100,6 @@ class NodeDataController extends BaseController
         }
 
         $data = $data->get();
-        $data['data'] = json_decode($data['data']);
 
         return $this->sendResponse(NodeDataResource::collection($data), 'Data retrieved successfully.');
     }

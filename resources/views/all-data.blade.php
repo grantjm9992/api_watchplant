@@ -19,7 +19,7 @@
                             Comparative Graph
                         </div>
                         <div class="col-12 col-lg-4">
-                            <label for="id_label_multiple" class="text-light mt-1">
+                            <label for="id_label_multiple" class="mt-1">
                                 Node
                                 <select class="js-example-basic-single" name="node" id="node_select" style="width: 300px;">
                                     <?php
@@ -33,7 +33,7 @@
                             </label>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <label for="date_range" class="text-light mt-1">
+                            <label for="date_range" class="mt-1">
                                 Date range
                                 <select class="js-example-basic-single" name="date" id="date_range" style="width: 300px;">
                                     <option value="latest" selected>Latest data</option>

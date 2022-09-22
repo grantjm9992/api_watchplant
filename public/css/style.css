@@ -1,6 +1,6 @@
 html, body {
     overflow-x: hidden;
-    background-color: #002122;
+    background-color: #fff;
 }
 
 #myChart {
@@ -9,21 +9,21 @@ html, body {
 }
 
 .card {
-    background-color: #002122;
-    border-color: #002122;
-    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+    color: #002122;
 }
 
 .card-header {
-    background-color: #002122;
-    border-color: #002122;
-    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+    color: #002122;
 }
 
 .card-body {
-    background-color: #002122;
-    border-color: #002122;
-    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+    color: #002122;
 }
 
 .select2-selection__choice__display {

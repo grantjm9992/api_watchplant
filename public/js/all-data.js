@@ -72,11 +72,11 @@ function createData(httpResponse) {
     let diff2Data = [];
     let dataArray = Array.from(httpResponse.data);
     dataArray.forEach((entry) => {
-        humidityData.push(entry.humidity_external);
-        lightData.push(entry.light_external);
-        tempData.push(entry.temp_external);
-        diff1Data.push(entry.differential_potenial_ch1);
-        diff2Data.push(entry.differential_potenial_ch2);
+        humidityData.push(entry.data.humidity_external);
+        lightData.push(entry.data.light_external);
+        tempData.push(entry.data.temp_external);
+        diff1Data.push(entry.data.differential_potenial_ch1);
+        diff2Data.push(entry.data.differential_potenial_ch2);
         labels.push(entry.date);
     });
     return {
