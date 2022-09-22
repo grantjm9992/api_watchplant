@@ -65,7 +65,7 @@ function getMultipleNodeSingleDatatypeData()
                     tension: 0.1,
                     label: nodeKey,
                     data: data,
-                    borderWidth: 1
+                    borderWidth: 3
                 });
                 i++;
             }
