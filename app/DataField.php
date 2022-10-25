@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataField extends Model
 {
+    protected $table = 'data_field';
+
     /**
      * The attributes that are mass assignable.
      *
