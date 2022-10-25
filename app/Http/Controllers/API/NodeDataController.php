@@ -102,7 +102,7 @@ class NodeDataController extends BaseController
             $data->select('date', 'node_id', $request->data_type);
         }
 
-        $data = $data->get();
+        $data = $data->get()->toArray();
         $data = array_reverse($data);
 
         return $this->sendResponse(NodeDataResource::collection($data), 'Data retrieved successfully.');
@@ -116,7 +116,7 @@ class NodeDataController extends BaseController
         foreach ($nodeIds as $nodeId) {
             $data = NodeData::where('node_id', $nodeId)->orderBy('date', 'DESC');
             $data->limit($dataLimit);
-            $data = $data->get();
+            $data = $data->get()->toArray();
             $data = array_reverse($data);
             $responseData[$nodeId] = $data;
         }
