@@ -36,11 +36,13 @@
                             <label for="date_range" class="mt-1">
                                 Data type
                                 <select class="js-example-basic-single" name="data_type" id="data_type" style="width: 300px;">
-                                    <option value="humidity_external" selected>Humidity external</option>
-                                    <option value="light_external">Light external</option>
-                                    <option value="temp_external">Temp external</option>
-                                    <option value="differential_potenial_ch1">Differential potential CH1</option>
-                                    <option value="differential_potenial_ch2">Differential potential CH2</option>
+                                    <?php
+                                        foreach ($dataFields as $field) {
+                                    ?>
+                                    <option value="<?php echo $field['handle']; ?>"><?php echo $field['name']; ?></option>
+                                    <?php
+                                        }
+                                    ?>
                                 </select>
                             </label>
                         </div>

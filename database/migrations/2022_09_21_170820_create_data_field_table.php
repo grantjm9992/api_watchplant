@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('handle', 255)->unique();
             $table->string('name')->nullable();
+            $table->string('unit')->nullable();
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class DataField extends Model
     protected $fillable = [
         'handle',
         'name',
+        'unit'
     ];
 
     /**

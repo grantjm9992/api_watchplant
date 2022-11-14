@@ -13,7 +13,7 @@ class NodeData extends Model
      * @var array
      */
     protected $fillable = [
-        'node_id',
+        'node_handle',
         'temp_external',
         'light_external',
         'humidity_external',

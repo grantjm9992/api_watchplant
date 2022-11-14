@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataField;
 use App\Nodes;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,8 +13,10 @@ class HomeController extends Controller
     public function index(): Factory|View|Application
     {
         $nodes = Nodes::all()->toArray();
+        $dataFields = DataField::all()->toArray();
         return view('home', [
-            'nodes' => $nodes
+            'nodes' => $nodes,
+            'dataFields' => $dataFields
         ]);
     }
 

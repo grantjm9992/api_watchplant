@@ -10,7 +10,7 @@ const colours = [
 ];
 
 $('#node_select').change(() => {
-   let node_id = $('#node_select').val();
+   let node_handle = $('#node_select').val();
    if (myChart) {
        myChart.destroy();
    }

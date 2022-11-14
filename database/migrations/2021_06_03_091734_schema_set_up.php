@@ -23,7 +23,7 @@ class SchemaSetUp extends Migration
 
         Schema::create('node_data', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('node_id');
+            $table->string('node_handle');
             $table->decimal('temp_external', 20, 10)->nullable();
             $table->decimal('light_external', 20, 10)->nullable();
             $table->decimal('humidity_external', 20, 10)->nullable();

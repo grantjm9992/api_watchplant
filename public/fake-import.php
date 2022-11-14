@@ -1,7 +1,7 @@
 <?php
     $date = new \DateTime();
     $data = array(
-        'node_id' => 'test_node',
+        'node_handle' => 'test_node',
         'temp_external' => rand(30, 100),
         'light_external' => rand(30, 100),
         'humidity_external' => rand(30, 100),

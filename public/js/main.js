@@ -44,7 +44,7 @@ function getMultipleNodeSingleDatatypeData()
         type: 'POST',
         url: '/api/sensordata-multiple?data_type=humidity_external',
         data: {
-            node_ids: nodeIds
+            node_handles: nodeIds
         },
         success: (response) => {
             ajaxData = [];

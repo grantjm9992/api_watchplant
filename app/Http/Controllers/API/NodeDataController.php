@@ -40,7 +40,7 @@ class NodeDataController extends BaseController
                     for ($c=0; $c < $num; $c++) {
                         $dataField[$keys[$c]] = $data[$c];
                     }
-                    $thisRow['node_id']  = "test_node_$i";
+                    $thisRow['node_handle']  = "test_node_$i";
                     $thisRow['data'] = $dataField;
                     $thisRow['date'] = $data[0];
                     $ass[] = $thisRow;
@@ -69,7 +69,7 @@ class NodeDataController extends BaseController
 
         if ($this->isAssoc($data)) {
             $validator = Validator::make($data, [
-                'node_id' => 'required',
+                'node_handle' => 'required',
             ]);
 
             if($validator->fails()){
@@ -80,7 +80,7 @@ class NodeDataController extends BaseController
             $response = array();
             foreach ($data as $row) {
                 $validator = Validator::make($row, [
-                    'node_id' => 'required',
+                    'node_handle' => 'required',
                 ]);
 
                 if($validator->fails()){
@@ -95,11 +95,11 @@ class NodeDataController extends BaseController
 
     public function retrieve($nodeId, Request $request): JsonResponse
     {
-        $data = NodeData::where('node_id', $nodeId)->orderBy('date', 'DESC');
+        $data = NodeData::where('node_handle', $nodeId)->orderBy('date', 'DESC');
         $dataLimit = ($request->has('data_size')) ? (int)$request->data_size : 50;
         $data->limit($dataLimit);
         if ($request->has('data_type')) {
-            $data->select('date', 'node_id', $request->data_type);
+            $data->select('date', 'node_handle', $request->data_type);
         }
 
         $data = $data->get()->toArray();
@@ -111,10 +111,10 @@ class NodeDataController extends BaseController
     public function retrieveForMultipleNodes(Request $request): JsonResponse
     {
         $dataLimit = array_key_exists('data_size', $this->request) ? (int)$this->request->data_size : 50;
-        $nodeIds = $this->request['node_ids'];
+        $nodeIds = $this->request['node_handles'];
         $responseData = [];
         foreach ($nodeIds as $nodeId) {
-            $data = NodeData::where('node_id', $nodeId)->orderBy('date', 'DESC');
+            $data = NodeData::where('node_handle', $nodeId)->orderBy('date', 'DESC');
             $data->limit($dataLimit);
             $data = $data->get()->toArray();
             $data = array_reverse($data);

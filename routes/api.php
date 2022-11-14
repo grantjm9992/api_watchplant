@@ -20,7 +20,9 @@ Route::get('sensordata/{nodeId}', 'API\NodeDataController@retrieve');
 Route::post('sensordata-multiple', 'API\NodeDataController@retrieveForMultipleNodes');
 Route::get('nodes', 'API\NodeController@retrieve');
 Route::post('nodes', 'API\NodeController@create');
+Route::post('nodes/delete', 'API\NodeController@delete');
 Route::post('data-field', 'API\DataFieldController@create');
+Route::get('data-field', 'API\DataFieldController@listAll');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
