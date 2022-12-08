@@ -12,8 +12,8 @@ class HomeController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $nodes = Nodes::all()->toArray();
-        $dataFields = DataField::all()->toArray();
+        $nodes = Nodes::all()->sortBy('name')->toArray();
+        $dataFields = DataField::all()->sortBy('name')->toArray();
         return view('home', [
             'nodes' => $nodes,
             'dataFields' => $dataFields
@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function allData(): Factory|View|Application
     {
-        $nodes = Nodes::all()->toArray();
+        $nodes = Nodes::all()->sortBy('name')->toArray();
         return view('all-data', [
             'nodes' => $nodes
         ]);

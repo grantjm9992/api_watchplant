@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\DataField;
+use App\Nodes;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -114,11 +116,18 @@ class NodeDataController extends BaseController
         $nodeIds = $this->request['node_handles'];
         $responseData = [];
         foreach ($nodeIds as $nodeId) {
+            $node = Nodes::where('handle', $nodeId)->get()->first()->toArray();
+            $dataField = DataField::where('handle', $request->query->get('data_type'))->get()->first()->toArray();
             $data = NodeData::where('node_handle', $nodeId)->orderBy('date', 'DESC');
             $data->limit($dataLimit);
             $data = $data->get()->toArray();
             $data = array_reverse($data);
-            $responseData[$nodeId] = $data;
+            $responseData[] = array(
+                'node_name' => $node['name'],
+                'node_handle' => $nodeId,
+                'data' => $data,
+                'unit' => $dataField['unit']
+            );
         }
         return $this->sendResponse($responseData, 'Data retrieved successfully');
     }

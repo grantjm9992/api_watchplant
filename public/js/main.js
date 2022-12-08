@@ -37,12 +37,13 @@ function randomRGB() {
 function getMultipleNodeSingleDatatypeData()
 {
     let nodeIds = $('#nodes').val();
+    let dataType = $('#data_type').val();
     if (myChart) {
         myChart.destroy();
     }
     $.ajax({
         type: 'POST',
-        url: '/api/sensordata-multiple?data_type=humidity_external',
+        url:  `/api/sensordata-multiple?data_type=${dataType}`,
         data: {
             node_handles: nodeIds
         },
@@ -50,11 +51,10 @@ function getMultipleNodeSingleDatatypeData()
             ajaxData = [];
             let labels = [];
             let dataArray = response.data;
-            let dataType = $('#data_type').val();
             let i = 0;
-            for (let nodeKey in dataArray) {
+            dataArray.forEach((dataRow) => {
                 let data = [];
-                dataArray[nodeKey].forEach((entry) => {
+                dataRow['data'].forEach((entry) => {
                     data.push(entry.data[dataType]);
                     if (i === 0) {
                         labels.push(entry.date);
@@ -63,11 +63,14 @@ function getMultipleNodeSingleDatatypeData()
                 ajaxData.push({
                     borderColor: colours[i],
                     tension: 0.1,
-                    label: nodeKey,
+                    label: dataRow['node_name'],
                     data: data,
                     borderWidth: 3
                 });
                 i++;
+
+            });
+            for (let nodeKey in dataArray) {
             }
 
             ctx = document.getElementById('myChart').getContext('2d');
