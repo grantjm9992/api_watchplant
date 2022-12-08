@@ -55,10 +55,7 @@ function getMultipleNodeSingleDatatypeData()
             dataArray.forEach((dataRow) => {
                 let data = [];
                 dataRow['data'].forEach((entry) => {
-                    data.push(entry.data[dataType]);
-                    if (i === 0) {
-                        labels.push(entry.date);
-                    }
+                    data.push({x: entry.date, y: entry.data[dataType]});
                 });
                 ajaxData.push({
                     borderColor: colours[i],
