@@ -18,12 +18,7 @@ class BaseController extends Controller
         $this->request = $request->request->all();
     }
 
-    /**
-     * @param $result
-     * @param $message
-     * @return JsonResponse
-     */
-    public function sendResponse($result, $message): \Illuminate\Http\JsonResponse
+    public function sendResponse($result, $message): JsonResponse
     {
     	$response = [
             'success' => true,
@@ -51,14 +46,7 @@ class BaseController extends Controller
         return response()->json($response, $code);
     }
 
-
-    /**
-     * return if array is associative
-     *
-     * @param array $arr
-     * @return boolean
-     */
-    public function isAssoc(array $arr)
+    public function isAssoc(array $arr): bool
     {
         if (array() === $arr) return false;
         return array_keys($arr) !== range(0, count($arr) - 1);

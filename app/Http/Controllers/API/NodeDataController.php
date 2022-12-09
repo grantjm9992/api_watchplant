@@ -13,65 +13,19 @@ use App\Http\Resources\NodeDataResource;
 
 class NodeDataController extends BaseController
 {
-    public function importFromFiles(Request $request): JsonResponse
-    {
-        $i = 0;
-        while ($i < 2) {
-            $handle = fopen(__DIR__ . "/rpi$i.csv", "r");
-            $row = 1;
-            $keys = [];
-            $ass = [];
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                $num = count($data);
-                if ($row === 1) {
-                    for ($c=0; $c < $num; $c++) {
-                        $string = $data[$c];
-                        $string = str_replace('-', '_', $string);
-                        $string = strtolower($string);
-                        if ($string === 'timestamp') {
-                            $keys[0] = 'date';
-                        }
-                        else {
-                            $keys[$c] = $string;
-                        }
-                    }
-                }
-                else {
-                    $thisRow = [];
-                    $dataField = [];
-                    for ($c=0; $c < $num; $c++) {
-                        $dataField[$keys[$c]] = $data[$c];
-                    }
-                    $thisRow['node_handle']  = "test_node_$i";
-                    $thisRow['data'] = $dataField;
-                    $thisRow['date'] = $data[0];
-                    $ass[] = $thisRow;
-                }
+    protected const HANDLE = 'handle';
+    protected const NODE_HANDLE = 'node_handle';
+    protected const NODE_HANDLES = 'node_handles';
+    protected const DATA_SIZE = 'data_size';
+    protected const DATA_TYPE = 'data_type';
 
-                $row++;
-            }
-
-            $this->import($request, $ass);
-            $i++;
-        }
-
-
-        return $this->sendResponse(null, '');
-    }
-
-    public function import(Request $request, $testDataFromFile = null): JsonResponse
+    public function import(Request $request): JsonResponse
     {
         $data = $request->all();
 
-        if ($testDataFromFile !== null) {
-            $data = $testDataFromFile;
-        }
-
-        $response = null;
-
         if ($this->isAssoc($data)) {
             $validator = Validator::make($data, [
-                'node_handle' => 'required',
+                self::NODE_HANDLE => 'required',
             ]);
 
             if($validator->fails()){
@@ -82,7 +36,7 @@ class NodeDataController extends BaseController
             $response = array();
             foreach ($data as $row) {
                 $validator = Validator::make($row, [
-                    'node_handle' => 'required',
+                    self::NODE_HANDLE => 'required',
                 ]);
 
                 if($validator->fails()){
@@ -97,11 +51,11 @@ class NodeDataController extends BaseController
 
     public function retrieve($nodeId, Request $request): JsonResponse
     {
-        $data = NodeData::where('node_handle', $nodeId)->orderBy('date', 'DESC');
-        $dataLimit = ($request->has('data_size')) ? (int)$request->data_size : 50;
+        $data = NodeData::where(self::NODE_HANDLE, $nodeId)->orderBy('date', 'DESC');
+        $dataLimit = ($request->has(self::DATA_SIZE)) ? (int)$request->get('data_size') : 50;
         $data->limit($dataLimit);
-        if ($request->has('data_type')) {
-            $data->select('date', 'node_handle', $request->data_type);
+        if ($request->has(self::DATA_TYPE)) {
+            $data->select('date', 'node_handle', $request->get('data_type'));
         }
 
         $data = $data->get()->toArray();
@@ -112,15 +66,26 @@ class NodeDataController extends BaseController
 
     public function retrieveForMultipleNodes(Request $request): JsonResponse
     {
-        $dataLimit = array_key_exists('data_size', $this->request) ? (int)$this->request->data_size : 50;
-        $nodeIds = $this->request['node_handles'];
+        $dataLimit = array_key_exists(self::DATA_SIZE, $this->request) ? (int)$this->request[self::DATA_SIZE] : 50;
+        $nodeIds = $this->request[self::NODE_HANDLES];
         $responseData = [];
         foreach ($nodeIds as $nodeId) {
-            $node = Nodes::where('handle', $nodeId)->get()->first()->toArray();
-            $dataField = DataField::where('handle', $request->query->get('data_type'))->get()->first()->toArray();
-            $data = NodeData::where('node_handle', $nodeId)->orderBy('date', 'DESC');
-            $data->limit($dataLimit);
-            $data = $data->get()->toArray();
+            $node = Nodes::where(self::HANDLE, $nodeId)
+                ->get()
+                ->first()
+                ->toArray();
+
+            $dataField = DataField::where(self::HANDLE, $request->query->get(self::DATA_TYPE))
+                ->get()
+                ->first()
+                ->toArray();
+
+            $data = NodeData::where(self::NODE_HANDLE, $nodeId)
+                ->orderBy('date', 'DESC')
+                ->limit($dataLimit)
+                ->get()
+                ->toArray();
+
             $data = array_reverse($data);
             $responseData[] = array(
                 'node_name' => $node['name'],

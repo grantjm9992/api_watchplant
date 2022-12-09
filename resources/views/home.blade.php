@@ -39,7 +39,7 @@
                                     <?php
                                         foreach ($dataFields as $field) {
                                     ?>
-                                    <option value="<?php echo $field['handle']; ?>"><?php echo $field['name']; ?></option>
+                                    <option value="<?php echo $field['handle']; ?>"><?php echo $field['name'] . ' (' . $field['unit'] . ')'; ?></option>
                                     <?php
                                         }
                                     ?>

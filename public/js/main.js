@@ -45,7 +45,8 @@ function getMultipleNodeSingleDatatypeData()
         type: 'POST',
         url:  `/api/sensordata-multiple?data_type=${dataType}`,
         data: {
-            node_handles: nodeIds
+            node_handles: nodeIds,
+            date_range: $('#date_range').val()
         },
         success: (response) => {
             ajaxData = [];
