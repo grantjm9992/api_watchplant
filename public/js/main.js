@@ -93,7 +93,7 @@ function getMultipleNodeSingleDatatypeData()
 }
 
 
-$('#data_type, #nodes').change(() => {
+$('#data_type, #nodes, #date_range').change(() => {
     getMultipleNodeSingleDatatypeData();
 })
 
@@ -102,11 +102,4 @@ $(document).ready(function() {
         maximumSelectionLength: 8
     });
     $('.js-example-basic-single').select2();
-    $('#date_range').on('select2:select', function (e) {
-        if (e.target.value !== 'latest') {
-            var toastLiveExample = document.getElementById('liveToast');
-            var toast = new bootstrap.Toast(toastLiveExample);
-            toast.show();
-        }
-    });
 });
