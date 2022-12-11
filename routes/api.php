@@ -22,6 +22,7 @@ Route::get('nodes', 'API\NodeController@retrieve');
 Route::post('nodes', 'API\NodeController@create');
 Route::post('nodes/delete', 'API\NodeController@delete');
 Route::post('data-field', 'API\DataFieldController@create');
+Route::post('data-field/delete', 'API\DataFieldController@delete');
 Route::get('data-field', 'API\DataFieldController@listAll');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
