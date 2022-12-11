@@ -71,6 +71,10 @@ function createData(httpResponse) {
     let diff1Data = [];
     let diff2Data = [];
     let dataArray = Array.from(httpResponse.data);
+    let ajaxData = [];
+    dataArray['dataFields'].forEach((field) => {
+        
+    });
     dataArray.forEach((entry) => {
         humidityData.push(entry.data.humidity_external);
         lightData.push(entry.data.light_external);
