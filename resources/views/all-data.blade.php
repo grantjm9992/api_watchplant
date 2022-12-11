@@ -38,7 +38,7 @@
                                 <select class="js-example-basic-single" name="date" id="date_range" style="width: 300px;">
                                     <option value="latest" selected>Latest data</option>
                                     <option value="month">Last month</option>
-                                    <option value="six_months">Last 6 months</option>
+                                    <option value="twelve_months">Last 12 months</option>
                                 </select>
                             </label>
                         </div>

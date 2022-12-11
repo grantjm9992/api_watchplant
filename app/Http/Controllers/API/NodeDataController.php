@@ -122,7 +122,7 @@ class NodeDataController extends BaseController
                 $responseData[] = $data;
             }
 
-            if ($this->request['date_range'] == 'six_months') {
+            if ($this->request['date_range'] == 'twelve_months') {
 
                 $data = $this->throughIntervals(
                     $node,
@@ -172,7 +172,7 @@ class NodeDataController extends BaseController
         $dateArray = [];
         $t1 = new \DateTime();
         $interval = new \DateInterval('P1M');
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 12; $i++) {
             $date = $t1->sub($interval);
             $dateArray[] = array(
                 'from' => $date->format('Y-m-01 00:00:00'),
@@ -225,7 +225,7 @@ class NodeDataController extends BaseController
         }
 
         return array(
-            'data' => $data,
+            'data' => array_reverse($data),
             'node_handle' => $node['handle'],
             'node_name' => $node['name']
         );
