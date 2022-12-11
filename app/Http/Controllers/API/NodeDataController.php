@@ -87,19 +87,50 @@ class NodeDataController extends BaseController
                 ->first()
                 ->toArray();
 
-            $data = NodeData::where(self::NODE_HANDLE, $nodeId)
-                ->orderBy('date', 'DESC')
-                ->limit($dataLimit)
-                ->get()
-                ->toArray();
+            if ($this->request['date_range'] == 'latest') {
+                /*$data = NodeData::where(self::NODE_HANDLE, $nodeId)
+                    ->orderBy('date', 'DESC')
+                    ->limit($dataLimit)
+                    ->get()
+                    ->toArray();
 
-            $data = array_reverse($data);
-            $responseData[] = array(
-                'node_name' => $node['name'],
-                'node_handle' => $nodeId,
-                'data' => $data,
-                'unit' => $dataField['unit']
-            );
+                $data = array_reverse($data);
+
+                $responseData[] = array(
+                    'node_name' => $node['name'],
+                    'node_handle' => $nodeId,
+                    'data' => $data,
+                    'unit' => $dataField['unit']
+                );*/
+
+                $data = $this->throughIntervals(
+                    $node,
+                    $this->getDayIntervalArray()
+                );
+                $data['unit'] = $dataField['unit'];
+                $responseData[] = $data;
+
+            }
+
+            if ($this->request['date_range'] == 'month') {
+
+                $data = $this->throughIntervals(
+                    $node,
+                    $this->getMonthIntervalArray()
+                );
+                $data['unit'] = $dataField['unit'];
+                $responseData[] = $data;
+            }
+
+            if ($this->request['date_range'] == 'six_months') {
+
+                $data = $this->throughIntervals(
+                    $node,
+                    $this->getSixMonthIntervalArray()
+                );
+                $data['unit'] = $dataField['unit'];
+                $responseData[] = $data;
+            }
         }
         return $this->sendResponse($responseData, 'Data retrieved successfully');
     }
