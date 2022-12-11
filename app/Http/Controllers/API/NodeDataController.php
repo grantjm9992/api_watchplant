@@ -51,7 +51,7 @@ class NodeDataController extends BaseController
 
     public function retrieve($nodeId, Request $request): JsonResponse
     {
-        $data = NodeData::where(self::NODE_HANDLE, $nodeId)->orderBy('date', 'DESC');
+        /*$data = NodeData::where(self::NODE_HANDLE, $nodeId)->orderBy('date', 'DESC');
         $dataLimit = ($request->has(self::DATA_SIZE)) ? (int)$request->get('data_size') : 50;
         $data->limit($dataLimit);
         if ($request->has(self::DATA_TYPE)) {
@@ -59,21 +59,48 @@ class NodeDataController extends BaseController
         }
 
         $data = $data->get()->toArray();
-        $data = array_reverse($data);
+        $data = array_reverse($data);*/
+        $responseData = [];
+        $node = Nodes::where(self::HANDLE, $nodeId)
+            ->get()
+            ->first()
+            ->toArray();
 
         $dataFields = DataField::all()->toArray();
 
-        $returnArray = [
-            'fields' => $dataFields,
-            'data' => $data
-        ];
+        if ($request->query('date_range') == 'latest') {
+            $data = $this->throughIntervals(
+                $node,
+                $this->getDayIntervalArray()
+            );
+            $responseData = $data;
+        }
 
-        return $this->sendResponse($returnArray, 'Data retrieved successfully.');
+        if ($request->query('date_range') == 'month') {
+            $data = $this->throughIntervals(
+                $node,
+                $this->getMonthIntervalArray()
+            );
+            $responseData = $data;
+        }
+
+        if ($request->query('date_range') == 'twelve_months') {
+
+            $data = $this->throughIntervals(
+                $node,
+                $this->getSixMonthIntervalArray()
+            );
+            $responseData = $data;
+        }
+
+
+        $responseData['fields'] = $dataFields;
+
+        return $this->sendResponse($responseData, 'Data retrieved successfully.');
     }
 
     public function retrieveForMultipleNodes(Request $request): JsonResponse
     {
-        $dataLimit = array_key_exists(self::DATA_SIZE, $this->request) ? (int)$this->request[self::DATA_SIZE] : 50;
         $nodeIds = $this->request[self::NODE_HANDLES];
         $responseData = [];
         foreach ($nodeIds as $nodeId) {
@@ -88,20 +115,6 @@ class NodeDataController extends BaseController
                 ->toArray();
 
             if ($this->request['date_range'] == 'latest') {
-                /*$data = NodeData::where(self::NODE_HANDLE, $nodeId)
-                    ->orderBy('date', 'DESC')
-                    ->limit($dataLimit)
-                    ->get()
-                    ->toArray();
-
-                $data = array_reverse($data);
-
-                $responseData[] = array(
-                    'node_name' => $node['name'],
-                    'node_handle' => $nodeId,
-                    'data' => $data,
-                    'unit' => $dataField['unit']
-                );*/
 
                 $data = $this->throughIntervals(
                     $node,

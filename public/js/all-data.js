@@ -9,20 +9,28 @@ const colours = [
     '#db9611'
 ];
 
-$('#node_select').change(() => {
+$('#node_select, #date_range').change(() => {
    let nodeId = $('#node_select').val();
+   let date_range = $('#date_range').val();
    if (myChart) {
        myChart.destroy();
    }
-   loadData(nodeId);
+   loadData(nodeId, date_range);
 });
 
+function randomRGB() {
+    var o = Math.round,
+        r = Math.random,
+        s = 255;
+    return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
+}
 
-function loadData(nodeId)
+
+function loadData(nodeId, date_range)
 {
     $.ajax({
         type: 'GET',
-        url: `/api/sensordata/${nodeId}`,
+        url: `/api/sensordata/${nodeId}?date_range=${date_range}`,
         success: (response) => {
             let ctx = document.getElementById('comparative').getContext('2d');
             myChart = new Chart(ctx, {
@@ -64,73 +72,32 @@ function loadData(nodeId)
 }
 
 function createData(httpResponse) {
-    let labels = [];
-    let humidityData = [];
-    let lightData = [];
-    let tempData = [];
-    let diff1Data = [];
-    let diff2Data = [];
-    let dataArray = Array.from(httpResponse.data);
+    let dataArray = httpResponse['data'];
     let ajaxData = [];
-    dataArray['dataFields'].forEach((field) => {
-        
-    });
-    dataArray.forEach((entry) => {
-        humidityData.push(entry.data.humidity_external);
-        lightData.push(entry.data.light_external);
-        tempData.push(entry.data.temp_external);
-        diff1Data.push(entry.data.differential_potenial_ch1);
-        diff2Data.push(entry.data.differential_potenial_ch2);
-        labels.push(entry.date);
+    let dataFields = dataArray['fields'];
+    console.log(httpResponse['data']);
+    dataFields.forEach((field) => {
+        let fieldData = [];
+        dataArray['data'].forEach((entry) => {
+            fieldData.push({x: entry.date, y: entry.data[field['handle']]});
+        });
+        ajaxData.push({
+            borderColor: randomRGB(),
+            tension: 0.1,
+            label: field['name'],
+            data: fieldData,
+            borderWidth: 3
+        })
     });
     return {
-        labels: labels,
-        datasets: [{
-            borderColor: colours[0],
-            tension: 0.1,
-            label: 'Humidity External',
-            data: humidityData,
-            borderWidth: 3
-        }, {
-            borderColor: colours[1],
-            tension: 0.1,
-            label: 'Temp External',
-            data: tempData,
-            borderWidth: 3
-        }, {
-            borderColor: colours[2],
-            tension: 0.1,
-            label: 'Light External',
-            data: lightData,
-            borderWidth: 3
-        }, {
-            borderColor: colours[3],
-            tension: 0.1,
-            label: 'Diff. Potential CH1',
-            data: diff1Data,
-            borderWidth: 3
-        }, {
-            borderColor: colours[4],
-            tension: 0.1,
-            label: 'Diff. Potential CH2',
-            data: diff2Data,
-            borderWidth: 3
-        },]
+        datasets: ajaxData
     };
 }
 
 
 $(document).ready(function() {
-    $('.js-example-basic-multiple').select2({
-        maximumSelectionLength: 8
-    });
     $('.js-example-basic-single').select2();
-    $('#date_range').on('select2:select', function (e) {
-        if (e.target.value !== 'latest') {
-            var toastLiveExample = document.getElementById('liveToast');
-            var toast = new bootstrap.Toast(toastLiveExample);
-            toast.show();
-        }
-    });
-    loadData();
+    let nodeId = $('#node_select').val();
+    let date_range = $('#date_range').val();
+    loadData(nodeId, date_range);
 });
