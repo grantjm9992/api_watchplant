@@ -152,7 +152,7 @@ class NodeDataController extends BaseController
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('PT15I');
+        $interval = new \DateInterval('PT15M');
         for ($i = 0; $i < 96; $i++) {
             $date2 = $t1->format('Y-m-d H:i:00');
             $date = $t1->sub($interval);
@@ -169,7 +169,7 @@ class NodeDataController extends BaseController
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('P6H');
+        $interval = new \DateInterval('PT6H');
         for ($i = 0; $i < ($t1->format('t')*4); $i++) {
             $date2 = $t1->format('Y-m-d H:00:00');
             $date = $t1->sub($interval);
