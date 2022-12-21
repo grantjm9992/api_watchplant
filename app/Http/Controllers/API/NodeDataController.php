@@ -176,7 +176,7 @@ class NodeDataController extends BaseController
             $dateArray[] = array(
                 'from' => $date->format('Y-m-d H:00:00'),
                 'to' => $date2,
-                'date' => $date->format('Y-m-d'),
+                'date' => $date->format('Y-m-d H'),
             );
         }
         return $dateArray;
