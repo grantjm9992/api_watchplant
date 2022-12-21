@@ -63,6 +63,17 @@ function loadData(nodeId, date_range)
                                     weight: 200
                                 }
                             }
+                        },
+                        zoom: {
+                            zoom: {
+                                wheel: {
+                                    enabled: true,
+                                },
+                                pinch: {
+                                    enabled: true
+                                },
+                                mode: 'xy',
+                            }
                         }
                     }
                 }
@@ -70,7 +81,6 @@ function loadData(nodeId, date_range)
         }
     });
 }
-
 function createData(httpResponse) {
     let dataArray = httpResponse['data'];
     let ajaxData = [];
