@@ -152,13 +152,14 @@ class NodeDataController extends BaseController
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('PT1H');
-        for ($i = 0; $i < 24; $i++) {
+        $interval = new \DateInterval('PT15I');
+        for ($i = 0; $i < 96; $i++) {
+            $date2 = $t1->format('Y-m-d H:i:00');
             $date = $t1->sub($interval);
             $dateArray[] = array(
-                'from' => $date->format('Y-m-d H:00:00'),
-                'to' => $date->format('Y-m-d H:59:59'),
-                'date' => $date->format('Y-m-d H:00'),
+                'from' => $date->format('Y-m-d H:i:00'),
+                'to' => $date2,
+                'date' => $date->format('Y-m-d H:i'),
             );
         }
         return $dateArray;
@@ -168,12 +169,13 @@ class NodeDataController extends BaseController
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('P1D');
-        for ($i = 0; $i < $t1->format('t'); $i++) {
+        $interval = new \DateInterval('P6H');
+        for ($i = 0; $i < ($t1->format('t')*4); $i++) {
+            $date2 = $t1->format('Y-m-d H:00:00');
             $date = $t1->sub($interval);
             $dateArray[] = array(
-                'from' => $date->format('Y-m-d 00:00:00'),
-                'to' => $date->format('Y-m-d 23:59:59'),
+                'from' => $date->format('Y-m-d H:00:00'),
+                'to' => $date2,
                 'date' => $date->format('Y-m-d'),
             );
         }
@@ -184,15 +186,17 @@ class NodeDataController extends BaseController
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('P1M');
-        for ($i = 0; $i < 12; $i++) {
+        $interval = new \DateInterval('P1W');
+        for ($i = 0; $i < 52; $i++) {
+            $date2 = $t1->format('Y-m-d 23:59:00');
             $date = $t1->sub($interval);
             $dateArray[] = array(
-                'from' => $date->format('Y-m-01 00:00:00'),
-                'to' => $date->format('Y-m-t 23:59:59'),
-                'date' => $date->format('Y-m'),
+                'from' => $date->format('Y-m-d 00:00:00'),
+                'to' => $date2,
+                'date' => $date->format('Y-m-d'),
             );
         }
+
         return $dateArray;
     }
 
