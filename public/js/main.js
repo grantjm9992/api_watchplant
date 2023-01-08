@@ -36,8 +36,7 @@ function randomRGB() {
 
 function resetZoomForChart()
 {
-    ctx = document.getElementById('myChart').getContext('2d');
-    ctx.resetZoom();
+    myChart.resetZoom();
 }
 
 function getMultipleNodeSingleDatatypeData()

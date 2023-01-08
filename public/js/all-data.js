@@ -76,11 +76,11 @@ function loadData(nodeId, date_range)
                                     enabled: true
                                 },
                                 mode: 'xy',
+                            },
+                            pan: {
+                                enabled: true,
+                                modifierKey: 'ctrl',
                             }
-                        },
-                        pan: {
-                            enabled: true,
-                            modifierKey: 'ctrl',
                         }
                     }
                 }
@@ -91,8 +91,7 @@ function loadData(nodeId, date_range)
 
 function resetZoomForChart()
 {
-    ctx = document.getElementById('myChart').getContext('2d');
-    ctx.resetZoom();
+    myChart.resetZoom();
 }
 
 function createData(httpResponse) {
