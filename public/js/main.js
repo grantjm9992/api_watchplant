@@ -104,12 +104,12 @@ function getMultipleNodeSingleDatatypeData()
                                     enabled: true
                                 },
                                 mode: 'xy',
+                            },
+                            pan: {
+                                enabled: true,
+                                modifierKey: 'ctrl',
                             }
                         },
-                        pan: {
-                            enabled: true,
-                            modifierKey: 'ctrl',
-                        }
                     }
                 }
             });
