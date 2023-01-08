@@ -72,8 +72,15 @@ function loadData(nodeId, date_range)
                                 pinch: {
                                     enabled: true
                                 },
+                                drag: {
+                                    enabled: true
+                                },
                                 mode: 'xy',
                             }
+                        },
+                        pan: {
+                            enabled: true,
+                            modifierKey: 'ctrl',
                         }
                     }
                 }
@@ -81,6 +88,13 @@ function loadData(nodeId, date_range)
         }
     });
 }
+
+function resetZoomForChart()
+{
+    ctx = document.getElementById('myChart').getContext('2d');
+    ctx.resetZoom();
+}
+
 function createData(httpResponse) {
     let dataArray = httpResponse['data'];
     let ajaxData = [];

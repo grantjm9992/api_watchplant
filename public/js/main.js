@@ -34,6 +34,12 @@ function randomRGB() {
     return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
 }
 
+function resetZoomForChart()
+{
+    ctx = document.getElementById('myChart').getContext('2d');
+    ctx.resetZoom();
+}
+
 function getMultipleNodeSingleDatatypeData()
 {
     let nodeIds = $('#nodes').val();
@@ -94,8 +100,15 @@ function getMultipleNodeSingleDatatypeData()
                                 pinch: {
                                     enabled: true
                                 },
+                                drag: {
+                                    enabled: true
+                                },
                                 mode: 'xy',
                             }
+                        },
+                        pan: {
+                            enabled: true,
+                            modifierKey: 'ctrl',
                         }
                     }
                 }
