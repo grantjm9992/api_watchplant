@@ -88,7 +88,7 @@ class NodeDataController extends BaseController
 
             $data = $this->throughIntervals(
                 $node,
-                $this->getSixMonthIntervalArray()
+                $this->getTwelveMonthIntervalArray()
             );
             $responseData = $data;
         }
@@ -139,7 +139,7 @@ class NodeDataController extends BaseController
 
                 $data = $this->throughIntervals(
                     $node,
-                    $this->getSixMonthIntervalArray()
+                    $this->getTwelveMonthIntervalArray()
                 );
                 $data['unit'] = $dataField['unit'];
                 $responseData[] = $data;
@@ -152,8 +152,8 @@ class NodeDataController extends BaseController
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('PT15M');
-        for ($i = 0; $i < 96; $i++) {
+        $interval = new \DateInterval('PT5M');
+        for ($i = 0; $i < 288; $i++) {
             $date2 = $t1->format('Y-m-d H:i:00');
             $date = $t1->sub($interval);
             $dateArray[] = array(
@@ -169,8 +169,8 @@ class NodeDataController extends BaseController
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('PT6H');
-        for ($i = 0; $i < ($t1->format('t')*4); $i++) {
+        $interval = new \DateInterval('PT1H');
+        for ($i = 0; $i < ($t1->format('t')*24); $i++) {
             $date2 = $t1->format('Y-m-d H:00:00');
             $date = $t1->sub($interval);
             $dateArray[] = array(
@@ -182,13 +182,13 @@ class NodeDataController extends BaseController
         return $dateArray;
     }
 
-    private function getSixMonthIntervalArray(): array
+    private function getTwelveMonthIntervalArray(): array
     {
         $dateArray = [];
         $t1 = new \DateTime();
-        $interval = new \DateInterval('P1W');
-        for ($i = 0; $i < 52; $i++) {
-            $date2 = $t1->format('Y-m-d 23:59:00');
+        $interval = new \DateInterval('P1D');
+        for ($i = 0; $i < 365; $i++) {
+            $date2 = $t1->format('Y-m-d 00:00:00');
             $date = $t1->sub($interval);
             $dateArray[] = array(
                 'from' => $date->format('Y-m-d 00:00:00'),
