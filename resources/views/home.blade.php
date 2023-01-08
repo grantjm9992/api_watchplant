@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-3">
                             <label for="id_label_multiple" class="mt-1">
                                 Nodes
                                 <select class="js-example-basic-multiple" name="node[]" multiple="multiple" id="nodes" style="width: 300px;">
@@ -32,7 +32,7 @@
                                 </select>
                             </label>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-3">
                             <label for="date_range" class="mt-1">
                                 Data type
                                 <select class="js-example-basic-single" name="data_type" id="data_type" style="width: 300px;">
@@ -46,7 +46,7 @@
                                 </select>
                             </label>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-3">
                             <label for="date_range" class="mt-1">
                                 Date range
                                 <select class="js-example-basic-single" name="date" id="date_range" style="width: 300px;">
@@ -55,6 +55,11 @@
                                     <option value="twelve_months">Last 12 months</option>
                                 </select>
                             </label>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <div class="btn btn-primary" onclick="resetZoomForChart()">
+                                Reset zoom
+                            </div>
                         </div>
                     </div>
                 </div>
