@@ -20,7 +20,7 @@ Route::get('nodes', 'API\NodeController@retrieve');
 Route::get('data-field', 'API\DataFieldController@listAll');
 Route::post('sensordata-multiple', 'API\NodeDataController@retrieveForMultipleNodes');
 
-Route::middleware('auth:api')->group( function() {
+Route::middleware('custom')->group( function() {
     Route::post('sensordata', 'API\NodeDataController@import');
     Route::post('sensordata-test-data', 'API\NodeDataController@importFromFiles');
     Route::post('nodes', 'API\NodeController@create');
