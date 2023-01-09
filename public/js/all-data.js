@@ -119,7 +119,10 @@ function createData(httpResponse) {
 
 
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
+    $('.js-example-basic-single').select2({
+        dropdownAutoWidth : true,
+        width: 'auto'
+    });
     let nodeId = $('#node_select').val();
     let date_range = $('#date_range').val();
     loadData(nodeId, date_range);

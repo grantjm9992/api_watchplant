@@ -124,7 +124,12 @@ $('#data_type, #nodes, #date_range').change(() => {
 
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2({
-        maximumSelectionLength: 8
+        maximumSelectionLength: 8,
+        dropdownAutoWidth : true,
+        width: 'auto'
     });
-    $('.js-example-basic-single').select2();
+    $('.js-example-basic-single').select2({
+        dropdownAutoWidth : true,
+        width: 'auto'
+    });
 });
