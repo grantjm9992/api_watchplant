@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('sensordata', 'API\NodeDataController@import');
-Route::post('sensordata-test-data', 'API\NodeDataController@importFromFiles');
-Route::get('sensordata/{nodeId}', 'API\NodeDataController@retrieve');
-Route::post('sensordata-multiple', 'API\NodeDataController@retrieveForMultipleNodes');
-Route::get('nodes', 'API\NodeController@retrieve');
-Route::post('nodes', 'API\NodeController@create');
-Route::post('nodes/delete', 'API\NodeController@delete');
-Route::post('data-field', 'API\DataFieldController@create');
-Route::post('data-field/delete', 'API\DataFieldController@delete');
-Route::get('data-field', 'API\DataFieldController@listAll');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('sensordata/{nodeId}', 'API\NodeDataController@retrieve');
+Route::get('nodes', 'API\NodeController@retrieve');
+Route::get('data-field', 'API\DataFieldController@listAll');
+Route::post('sensordata-multiple', 'API\NodeDataController@retrieveForMultipleNodes');
+
+Route::middleware('auth:api')->group( function() {
+    Route::post('sensordata', 'API\NodeDataController@import');
+    Route::post('sensordata-test-data', 'API\NodeDataController@importFromFiles');
+    Route::post('nodes', 'API\NodeController@create');
+    Route::post('nodes/delete', 'API\NodeController@delete');
+    Route::post('data-field', 'API\DataFieldController@create');
+    Route::post('data-field/delete', 'API\DataFieldController@delete');
 });

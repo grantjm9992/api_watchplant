@@ -36,14 +36,15 @@
                             <label for="date_range" class="mt-1">
                                 Date range
                                 <select class="js-example-basic-single" name="date" id="date_range" style="width: 300px;">
-                                    <option value="latest" selected>Last 24 hours</option>
+                                    <option value="last_hour" selected>Last hour</option>
+                                    <option value="last_day">Last 24 hours</option>
                                     <option value="month">Last month</option>
                                     <option value="twelve_months">Last 12 months</option>
                                 </select>
                             </label>
                         </div>
                         <div class="col-12 col-lg-3">
-                            <div class="btn btn-primary" onclick="resetZoomForChart()">
+                            <div class="btn btn-watchplant" onclick="resetZoomForChart()">
                                 Reset zoom
                             </div>
                         </div>
@@ -70,4 +71,17 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="/js/all-data.js"></script>
+    <style>
+        .btn-watchplant {
+            color: #fff;
+            background-color: #007c2f;
+            border-color: #007c2f;
+        }
+
+        .btn-watchplant:hover {
+            color: #007c2f;
+            background-color: #fff;
+            border-color: #007c2f;
+        }
+    </style>
 </body>

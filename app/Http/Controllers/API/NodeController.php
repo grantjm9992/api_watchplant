@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\NodeData;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -45,7 +46,8 @@ class NodeController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-        $nodes = Nodes::where('handle', $data['handle'])->delete();
+        Nodes::where('handle', $data['handle'])->delete();
+        NodeData::where('node_handle', $data['handle'])->delete();
 
         return $this->sendResponse('ok', 'Node deleted');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Validation\UnauthorizedException;
 
 class Authenticate extends Middleware
 {
@@ -14,8 +15,11 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        $token = $request->headers->get('Authorization');
+        $token = str_replace('Basic ', '', $token);
+        $token = base64_decode($token);
+        if (env('TOKEN') !== $token) {
+            throw new UnauthorizedException();
         }
     }
 }

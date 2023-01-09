@@ -68,7 +68,15 @@ class NodeDataController extends BaseController
 
         $dataFields = DataField::all()->toArray();
 
-        if ($request->query('date_range') == 'latest') {
+        if ($this->request['date_range'] == 'last_hour') {
+            $data = $this->throughIntervals(
+                $node,
+                $this->getHourIntervalArray()
+            );
+            $responseData = $data;
+        }
+
+        if ($request->query('date_range') == 'last_day') {
             $data = $this->throughIntervals(
                 $node,
                 $this->getDayIntervalArray()
@@ -114,7 +122,17 @@ class NodeDataController extends BaseController
                 ->first()
                 ->toArray();
 
-            if ($this->request['date_range'] == 'latest') {
+            if ($this->request['date_range'] == 'last_hour') {
+
+                $data = $this->throughIntervals(
+                    $node,
+                    $this->getHourIntervalArray()
+                );
+                $data['unit'] = $dataField['unit'];
+                $responseData[] = $data;
+            }
+
+            if ($this->request['date_range'] == 'last_day') {
 
                 $data = $this->throughIntervals(
                     $node,
@@ -146,6 +164,23 @@ class NodeDataController extends BaseController
             }
         }
         return $this->sendResponse($responseData, 'Data retrieved successfully');
+    }
+
+    private function getHourIntervalArray(): array
+    {
+        $dateArray = [];
+        $t1 = new \DateTime();
+        $interval = new \DateInterval('PT10S');
+        for ($i = 0; $i < 360; $i++) {
+            $date2 = $t1->format('Y-m-d H:i:s');
+            $date = $t1->sub($interval);
+            $dateArray[] = array(
+                'from' => $date->format('Y-m-d H:i:s'),
+                'to' => $date2,
+                'date' => $date->format('Y-m-d H:i:s'),
+            );
+        }
+        return $dateArray;
     }
 
     private function getDayIntervalArray(): array
