@@ -103,7 +103,7 @@ function createData(httpResponse) {
         let fieldData = [];
         dataArray['data'].forEach((entry) => {
             let date = new Date(entry.date);
-            date = new Date(date.getTime() + (60 * date.getTimezoneOffset()));
+            date = new Date(date.getTime() - (60 * 1000 * date.getTimezoneOffset()));
             let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
             fieldData.push({x: formattedDate, y: entry.data[field['handle']]});
         });
