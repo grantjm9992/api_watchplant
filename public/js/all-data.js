@@ -102,7 +102,10 @@ function createData(httpResponse) {
     dataFields.forEach((field) => {
         let fieldData = [];
         dataArray['data'].forEach((entry) => {
-            fieldData.push({x: entry.date, y: entry.data[field['handle']]});
+            let date = new Date(entry.date);
+            date = new Date(date.getTime() - (60 * date.getTimezoneOffset()));
+            let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`
+            fieldData.push({x: formattedDate, y: entry.data[field['handle']]});
         });
         ajaxData.push({
             borderColor: randomRGB(),
