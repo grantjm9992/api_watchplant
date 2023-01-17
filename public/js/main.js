@@ -39,6 +39,9 @@ function resetZoomForChart()
     myChart.resetZoom();
 }
 
+Number.prototype.zeroPad = function() {
+    return ('0'+this).slice(-2);
+};
 function getMultipleNodeSingleDatatypeData()
 {
     let nodeIds = $('#nodes').val();
@@ -63,7 +66,7 @@ function getMultipleNodeSingleDatatypeData()
                 dataRow['data'].forEach((entry) => {
                     let date = new Date(entry.date);
                     date = new Date(date.getTime() - (60 * 1000 * date.getTimezoneOffset()));
-                    let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+                    let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds().zeroPad()}`
                     data.push({x: formattedDate, y: entry.data[dataType]});
                 });
                 ajaxData.push({
