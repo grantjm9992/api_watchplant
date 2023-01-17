@@ -63,7 +63,7 @@ function getMultipleNodeSingleDatatypeData()
                 dataRow['data'].forEach((entry) => {
                     let date = new Date(entry.date);
                     date = new Date(date.getTime() - (60 * date.getTimezoneOffset()));
-                    let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getUTCHours()}:${date.getMinutes()}:${date.getSeconds()}`
+                    let formattedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
                     data.push({x: formattedDate, y: entry.data[dataType]});
                 });
                 ajaxData.push({
